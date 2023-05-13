@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script>
+        // Configurația Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJyMQjxqCoYIuvcTDo5Hk7zWJmxAGtghY",
+            authDomain: "the-game-80e96.firebaseapp.com",
+            projectId: "the-game-80e96",
+            storageBucket: "the-game-80e96.appspot.com",
+            messagingSenderId: "",
+            appId: "",
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="window.location.href='rules.html'">Reguli</button>
+        <button onclick="window.location.href='score.html'">Istoric</button>
+        <button onclick="window.location.href='game.html'">Jocul</button>
+    </div>
+    
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Jucator</th>
+                <th>A dat jocul la</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    
+</body>
+    <script src="app.js"></script>
+    <script src="istoric.js"></script>
+</html>

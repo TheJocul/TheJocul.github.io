@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCJyMQjxqCoYIuvcTDo5Hk7zWJmxAGtghY",
+        authDomain: "the-game-80e96.firebaseapp.com",
+        projectId: "the-game-80e96",
+        storageBucket: "the-game-80e96.appspot.com",
+        messagingSenderId: "",
+        appId: "",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+</head>
+<body>
+    <!-- <div class="container">
+        <div class="button-container">
+          <button id="loginButton" class="active-btn">Login</button>
+          <button id="signupButton">Sign Up</button>
+        </div>
+        <form id="loginForm">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username">
+          <button id="confirmLoginButton">Confirm Login</button>
+          <button id="confirmSignupButton">Confirm Sign Up</button>
+        </form>
+      </div> -->
+      <div id="login">
+        <h1>Login</h1>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="text" id="username" placeholder="Username" style="display: none;">
+        <button id="loginButton">Login</button>
+        <button id="signupButton">Sign Up</button>
+      </div>
+      
+</body>
+
+<script src="app.js"></script>
+
+</html>

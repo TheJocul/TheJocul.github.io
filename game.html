@@ -1,0 +1,266 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="window.location.href='rules.html'">Reguli</button>
+        <button onclick="window.location.href='score.html'">Istoric</button>
+        <button onclick="window.location.href='game.html'">Jocul</button>
+    </div>
+    
+
+    <div id="game">
+        <h1>Bine ai venit în joc!</h1>
+        <h2>Selectează un jucător:</h2>
+        <select id="playerSelect">
+
+        </select>
+        <button id="giveGameButton">Da jocul!</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script>
+    // Configurația Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCJyMQjxqCoYIuvcTDo5Hk7zWJmxAGtghY",
+        authDomain: "the-game-80e96.firebaseapp.com",
+        projectId: "the-game-80e96",
+        storageBucket: "the-game-80e96.appspot.com",
+        messagingSenderId: "",
+        appId: "",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Verificăm dacă utilizatorul este autentificat
+    firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        var today = new Date();
+        var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    
+        var dayRef = firebase.firestore().collection('days').doc(dateString);
+    
+        dayRef.get().then((doc) => {
+            var playersRef = firebase.firestore().collection('players');
+            playersRef.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.id != user.uid && (!doc.exists || !doc.data()[doc.id])) {
+                        var option = document.createElement('option');
+                        option.text = doc.data().username;
+                        option.value = doc.id;
+                        document.getElementById('playerSelect').add(option);
+                    }
+                });
+            });
+        }).catch((error) => {
+            console.error('Error getting day document: ', error);
+        });
+    }
+});
+
+
+
+    // Încărcăm jucătorii din baza de date Firebase Firestore
+    firebase.firestore().collection('users').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      var playerOption = document.createElement('option');
+      playerOption.value = doc.id;
+      playerOption.textContent = doc.data().username;
+      document.getElementById('playerSelect').appendChild(playerOption);
+    });
+  })
+  .catch((error) => {
+    console.error('Error loading players: ', error);
+  });
+
+
+  document.getElementById('giveGameButton').addEventListener('click', function() {
+    var selectedPlayerId = document.getElementById('playerSelect').value;
+    var currentUser = firebase.auth().currentUser;
+
+    if (!selectedPlayerId || !currentUser) {
+        alert('Selectează un jucător înainte de a da jocul!');
+        return;
+    }
+  
+    var today = new Date();
+    var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  
+    var dayRef = firebase.firestore().collection('days').doc(dateString);
+  
+    dayRef.get().then((doc) => {
+        if (doc.exists) {
+            // Dacă există deja un document pentru ziua de astăzi, actualizăm câmpul pentru jucătorul selectat
+            dayRef.update({
+                [selectedPlayerId]: currentUser.uid
+            })
+            .then(() => {
+                alert('Ai dat jocul!');
+            })
+            .catch((error) => {
+                console.error('Error giving game: ', error);
+            });
+        } else {
+
+            dayRef.set({
+                [selectedPlayerId]: currentUser.uid
+            })
+            .then(() => {
+                alert('Ai dat jocul!');
+            })
+            .catch((error) => {
+                console.error('Error giving game: ', error);
+            });
+        }
+    }).catch((error) => {
+        console.error('Error getting day document: ', error);
+    });
+});
+
+    </script>
+</body>
+</html>
+     -->
+     <!DOCTYPE html>
+     <html>
+     <head>
+         <link rel="stylesheet" type="text/css" href="styles.css">
+     </head>
+     <body>
+         <div class="navbar">
+             <button onclick="window.location.href='rules.html'">Reguli</button>
+             <button onclick="window.location.href='score.html'">Istoric</button>
+             <button onclick="window.location.href='game.html'">Jocul</button>
+         </div>
+     
+         <div id="game">
+             <h1>Bine ai venit în joc!</h1>
+             <h2>Selectează un jucător:</h2>
+             <select id="playerSelect">
+                 <!-- Aici vor fi opțiunile de selectare a jucătorilor -->
+             </select>
+             <button id="giveGameButton">Da jocul!</button>
+         </div>
+     
+         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+         <script>
+         // Configurația Firebase
+         const firebaseConfig = {
+             apiKey: "AIzaSyCJyMQjxqCoYIuvcTDo5Hk7zWJmxAGtghY",
+             authDomain: "the-game-80e96.firebaseapp.com",
+             projectId: "the-game-80e96",
+             storageBucket: "the-game-80e96.appspot.com",
+             messagingSenderId: "",
+             appId: "",
+         };
+     
+         firebase.initializeApp(firebaseConfig);
+     
+         // Verificăm dacă utilizatorul este autentificat
+         firebase.auth().onAuthStateChanged((user) => {
+             if (user) {
+                 var today = new Date();
+                 var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+             
+                 var dayRef = firebase.firestore().collection('days').doc(dateString);
+             
+                 dayRef.get().then((doc) => {
+                     var playersRef = firebase.firestore().collection('players');
+                     playersRef.get().then((querySnapshot) => {
+                         querySnapshot.forEach((doc) => {
+                             if (doc.id != user.uid && (!doc.exists || !doc.data()[doc.id])) {
+                                 var option = document.createElement('option');
+                                 option.text = doc.data().username;
+                                 option.value = doc.id;
+                                 document.getElementById('playerSelect').add(option);
+                             }
+                         });
+                     });
+                 }).catch((error) => {
+                     console.error('Error getting day document: ', error);
+                 });
+             }
+         });
+     
+         // Verificăm dacă un jucător a primit deja jocul în ziua curentă
+         function receivedGameToday(playerId) {
+            var today = new Date();
+        var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    
+        var dayRef = firebase.firestore().collection('days').doc(dateString);
+    
+        dayRef.get().then((doc) => {
+            if (doc.exists) {
+                var games = doc.data().games;
+                for (var i = 0; i < games.length; i++) {
+                    if (games[i].receiverId === playerId) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }).catch((error) => {
+            console.error('Error getting day document: ', error);
+            return false;
+        });
+    }
+
+    // Actualizăm funcția care se ocupă de evenimentul de click pe butonul "Da jocul!"
+    document.getElementById('giveGameButton').addEventListener('click', function() {
+        var selectedPlayerId = document.getElementById('playerSelect').value;
+        var currentUser = firebase.auth().currentUser;
+
+        if (!selectedPlayerId || !currentUser) {
+            alert('Selectează un jucător înainte de a da jocul!');
+            return;
+        }
+      
+        var today = new Date();
+        var dateString = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      
+        var dayRef = firebase.firestore().collection('days').doc(dateString);
+      
+        var gameData = {
+            giverId: currentUser.uid,
+            receiverId: selectedPlayerId
+        };
+      
+        dayRef.get().then((doc) => {
+            if (doc.exists) {
+                // Dacă există deja un document pentru ziua de astăzi, adăugăm un nou joc la lista de jocuri
+                dayRef.update({
+                    games: firebase.firestore.FieldValue.arrayUnion(gameData)
+                })
+                .then(() => {
+                    alert('Ai dat jocul!');
+                })
+                .catch((error) => {
+                    console.error('Error giving game: ', error);
+                });
+            } else {
+                // Dacă nu există un document pentru ziua de astăzi, creăm unul nou cu un joc
+                dayRef.set({
+                    games: [gameData]
+                })
+                .then(() => {
+                    alert('Ai dat jocul!');
+                })
+                .catch((error) => {
+                    console.error('Error giving game: ', error);
+                });
+            }
+        }).catch((error) => {
+            console.error('Error getting day document: ', error);
+        });
+    });
+    </script>
+</body>
+</html>
+

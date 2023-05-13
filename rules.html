@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="window.location.href='rules.html'">Reguli</button>
+        <button onclick="window.location.href='score.html'">Istoric</button>
+        <button onclick="window.location.href='game.html'">Jocul</button>
+    </div>
+    
+    <div id="rules">
+        <h1>Regulile jocului</h1>
+        <!-- Aici vor fi regulile jocului -->
+        <p>1. Jocul începe când o persoană (numită "jucător") aduce aminte de "joc" unei alte persoane.</p>
+        <p>2. ...</p>
+        <!-- Adaugă restul regulilor aici -->
+        <button id="startGameButton">Începe jocul!</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script>
+    // Configurația Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCJyMQjxqCoYIuvcTDo5Hk7zWJmxAGtghY",
+        authDomain: "the-game-80e96.firebaseapp.com",
+        projectId: "the-game-80e96",
+        storageBucket: "the-game-80e96.appspot.com",
+        messagingSenderId: "",
+        appId: "",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Verificăm dacă utilizatorul este autentificat
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        // Dacă utilizatorul nu este autentificat, îl redirecționăm înapoi la pagina de login
+        window.location.href = 'index.html';
+      }
+    });
+
+    document.getElementById('startGameButton').addEventListener('click', function() {
+        // Redirecționăm utilizatorul către pagina de joc
+        window.location.href = 'game.html';
+    });
+    </script>
+</body>
+</html>

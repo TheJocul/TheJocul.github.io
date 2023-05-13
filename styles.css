@@ -1,0 +1,116 @@
+body {
+    background-color: #1a1a1a;
+    color: #f2f2f2;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+}
+
+
+#login {
+    background-color: white;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+#login h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#login input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+#login button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#login button:disabled {
+    background-color: #ccc;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #3d3d3d;
+    border-bottom: 2px solid #999;
+}
+
+.navbar button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #666;
+    color: #f2f2f2;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    background-color: #999;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f2f2f2;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+th, td {
+    border: 1px solid #666;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .active-btn {
+    background-color: blue;
+    color: white;
+  }
+
+  #username {
+    display: none;
+  }
+
+  #confirmLoginButton {
+    display: none;
+  }
+
+  .container {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
